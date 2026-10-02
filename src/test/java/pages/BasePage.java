@@ -67,8 +67,9 @@ public abstract class BasePage {
             return waitFor(timeoutSeconds)
                     .until(ExpectedConditions.visibilityOfElementLocated(locator))
                     .isDisplayed();
-        } catch (Exception e) {
-            return false;
+        } catch (TimeoutException e) {
+            // Manejo específico cuando el elemento no aparece en el tiempo esperado
+            System.out.println("El elemento no se encontró dentro del tiempo de espera: " + e.getMessage());
         }
     }
 
